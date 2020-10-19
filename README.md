@@ -1,4 +1,4 @@
-# Christina - 10212020
+# Christina - 10/21/2020
 
 ## Installation
 
@@ -16,6 +16,8 @@ npm run start
 // - that have been addressed
 // - that have _not_ been addressed
 
+added GPG key for github so each commit is signed & verified
+
 ## Improvements
 
 // What could be added to the app / API?
@@ -24,6 +26,7 @@ npm run start
 
 // What external libraries have you used and why?
 conditional expression
+antd
 
 ## API
 

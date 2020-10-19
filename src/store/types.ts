@@ -10,7 +10,10 @@ export interface ApiResponse {
   error?: string;
 }
 
-export interface Document {}
+export interface Document {
+  title: string;
+  size: string;
+}
 
 export interface Documents {
   documentList?: Document[] | null;
@@ -40,7 +43,7 @@ export type Action =
   | { type: ActionTypes.uploadDocument; payload: State['documents'] }
   | {
       type: ActionTypes.getDocuments;
-      payload: State['documents'];
+      payload?: State['documents'];
     }
   | {
       type: ActionTypes.receiveDocuments;

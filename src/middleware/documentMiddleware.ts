@@ -9,18 +9,17 @@ import { takeEvery } from './middleware';
 export async function getDocuments<T extends ActionIdentity>(
   action: T
 ): Promise<Action> {
-  const searchString = action.payload!.searchString;
+  const str = action.payload?.searchString;
+  const api = str ? `/api/documents?searchString=${str}` : '/api/documents';
 
   try {
-    const response: Response = await fetch(
-      `/api/documents?searchString=${searchString}`
-    );
+    const response: Response = await fetch(api);
     const result: ApiResponse = await response.json();
 
     if (!response.ok) {
       throw new Error(result.error);
     }
-    debugger;
+
     return {
       type: ActionTypes.receiveDocuments,
       payload: result,
@@ -55,7 +54,6 @@ export async function uploadDocument<T extends ActionIdentity>(
 
     return {
       type: ActionTypes.getDocuments,
-      payload: { searchString: null },
     };
   } catch (error) {
     return {

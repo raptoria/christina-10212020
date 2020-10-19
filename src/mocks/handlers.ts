@@ -1,6 +1,7 @@
 import { rest } from 'msw';
+import { Document } from '../store/types';
 
-let documents: Document[] = [];
+let documents: Document[] = [{ title: 'test', size: '100kb' }];
 
 export const handlers = [
   //get documents

@@ -7,7 +7,6 @@ export const documents: Reducer<State['documents'], Action> = (
 ) => {
   switch (action.type) {
     case ActionTypes.receiveDocuments:
-      debugger;
       return { ...state, ...action.payload };
     case ActionTypes.receiveError:
       return { ...state, ...action.payload, loading: false };
