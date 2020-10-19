@@ -1,0 +1,19 @@
+.document {
+  display: grid;
+  grid-template-columns: max-content;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: var(--primary-background);
+
+  :global {
+  }
+}
+
+@media all and (max-width: 500px) {
+  .document {
+    padding-top: var(--spacing-sm);
+    align-items: start;
+  }
+}

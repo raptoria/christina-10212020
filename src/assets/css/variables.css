@@ -1,0 +1,42 @@
+:root {
+  --primary-color: #db6a30;
+  --secondary-color: #ff5722;
+  --neutral-color: #d1d1d1;
+  --neutral2-color: #fff;
+  --linebreak-color: #4d4d4d;
+  --primary-background: #444444;
+  --secondary-background: #565656;
+  --tertiary-background: #5f5c5c;
+  --quaternary-background: #3d3b3b;
+  --header-height: 56px;
+  --spacing-lg: 3rem;
+  --spacing-md: 2rem;
+  --spacing-sm: 1rem;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/OpenSans-Regular.ttf'); /* IE9 Compat Modes */
+  src: local('Open Sans'), local('OpenSans'),
+    url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/OpenSans-Bold.ttf'); /* IE9 Compat Modes */
+  src: local('Open Sans'), local('OpenSans'),
+    url('../fonts/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../fonts/OpenSans-SemiBold.ttf'); /* IE9 Compat Modes */
+  src: local('Open Sans'), local('OpenSans'),
+    url('../fonts/OpenSans-SemiBold.ttf') format('truetype');
+}

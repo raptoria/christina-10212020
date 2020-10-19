@@ -1,0 +1,76 @@
+{
+  "name": "jobcoin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prestart": "tsm src",
+    "start": "webpack-dev-server --mode=development",
+    "build": "webpack --config webpack.config.js --mode=production",
+    "test": "jest --watch"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "transform": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "transformIgnorePatterns": [
+      "./node_modules/"
+    ],
+    "setupFiles": [
+      "./src/App/setupTests.ts"
+    ]
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/lodash-es": "^4.17.3",
+    "antd": "^4.6.3",
+    "conditional-expression": "^1.1.2",
+    "jest-transform-stub": "^2.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.14.0",
+    "sass-loader": "^10.0.2"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^7.24.5",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@types/react": "16.9.49",
+    "@types/react-dom": "16.9.8",
+    "babel-jest": "^26.5.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.1.0",
+    "css-loader": "^4.3.0",
+    "file-loader": "^6.1.1",
+    "html-webpack-plugin": "^4.4.1",
+    "jest": "^26.5.2",
+    "mini-css-extract-plugin": "^0.11.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "resolve-url-loader": "^3.1.1",
+    "sass": "^1.27.0",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^4.1.0",
+    "ts-jest": "^26.4.1",
+    "ts-loader": "^8.0.3",
+    "ts-node": "^9.0.0",
+    "typed-scss-modules": "^3.1.0",
+    "typescript": "^4.0.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "write-file-webpack-plugin": "^4.5.1"
+  }
+}
