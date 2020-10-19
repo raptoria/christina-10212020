@@ -27,29 +27,34 @@ const DocumentManager: React.FC = () => {
         <div className="column-span">
           <Input
             size="large"
-            prefix={<SearchOutlined className="inputIcon" />}
+            prefix={<SearchOutlined className="input-icon" />}
             placeholder="Search documents"
             className="search"
           />
-          <Button type="primary" icon={<UploadOutlined />}>
+          <Button
+            type="primary"
+            className="upload-button"
+            icon={<UploadOutlined />}
+          >
             Upload
           </Button>
         </div>
 
         <div className="column-span">
-          <h3>!!! documents</h3>
+          <h2>!!! documents</h2>
           <span>Total size: !!</span>
         </div>
-        <div>
-          {documentList?.map((document) => (
-            <Card title={document.title} bordered={false} key={document.title}>
-              {document.size}
+
+        {documentList?.map((document) => (
+          <Card title={document.name} bordered={false} key={document.name}>
+            <div className="card-wrapper">
+              <span>{document.size}</span>
               <Button type="primary" icon={<DeleteOutlined />}>
                 Delete
               </Button>
-            </Card>
-          ))}
-        </div>
+            </div>
+          </Card>
+        ))}
       </div>
     </div>
   );

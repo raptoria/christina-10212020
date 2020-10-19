@@ -11,8 +11,9 @@ export interface ApiResponse {
 }
 
 export interface Document {
-  title: string;
+  name: string;
   size: string;
+  mimeType: string;
 }
 
 export interface Documents {

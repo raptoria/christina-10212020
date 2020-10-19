@@ -1,7 +1,12 @@
 import { rest } from 'msw';
 import { Document } from '../store/types';
 
-let documents: Document[] = [{ title: 'test', size: '100kb' }];
+let documents: Document[] = [
+  { name: 'test', size: '100kb', mimeType: 'image/png' },
+  { name: 'test2', size: '120kb', mimeType: 'image/png' },
+  { name: 'test3', size: '130kb', mimeType: 'image/png' },
+  { name: 'test4', size: '135kb', mimeType: 'image/png' },
+];
 
 export const handlers = [
   //get documents

@@ -18,12 +18,35 @@
         grid-template-columns: repeat(2, 1fr);
         align-items: center;
 
-        h3 {
+        h2 {
           display: inline-block;
+          color: var(--neutral2-color);
         }
 
         :nth-child(2) {
           justify-self: end;
+        }
+
+        .search {
+          width: 70%;
+        }
+      }
+
+      .ant-card {
+        margin: var(--spacing-md);
+        background: var(--tertiary-background);
+        color: var(--neutral-color);
+
+        .ant-card-head {
+          border-color: var(--linebreak-color);
+          color: var(--neutral2-color);
+        }
+
+        .card-wrapper {
+          display: grid;
+          grid-auto-flow: column;
+          align-items: center;
+          justify-content: space-between;
         }
       }
     }

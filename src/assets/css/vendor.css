@@ -1,10 +1,6 @@
-.ant-form-item {
-  margin-bottom: 1rem;
-}
-
-.ant-form-item-label {
-  text-align: left;
-  width: 100%;
+.input-icon {
+  color: var(--neutral-color);
+  margin-right: 0.1rem;
 }
 
 .ant-input-affix-wrapper {
@@ -16,10 +12,11 @@
   color: var(--neutral-color);
   background: var(--secondary-background);
 }
-.ant-btn-primary {
+.ant-btn-primary,
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
   background: var(--primary-color);
   border-color: var(--secondary-color);
-  width: 100%;
 }
 
 .ant-btn:not([disabled]):hover {
