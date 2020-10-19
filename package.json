@@ -1,5 +1,5 @@
 {
-  "name": "jobcoin",
+  "name": "document",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -58,6 +58,7 @@
     "html-webpack-plugin": "^4.4.1",
     "jest": "^26.5.2",
     "mini-css-extract-plugin": "^0.11.1",
+    "msw": "^0.21.3",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "resolve-url-loader": "^3.1.1",
     "sass": "^1.27.0",

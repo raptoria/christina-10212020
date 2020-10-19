@@ -4,6 +4,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -87,7 +88,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       favicon: 'src/assets/images/favicon.ico',
       template: './src/index.html',
-      title: 'Jobcoin Dashboard',
+      title: 'Document Manager',
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -96,6 +97,11 @@ module.exports = {
       chunkFilename: '[id].[hash].css',
     }),
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/mockServiceWorker.js', to: 'mockServiceWorker.js' },
+      ],
+    }),
   ],
   optimization: {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],

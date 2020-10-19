@@ -13,14 +13,14 @@ export async function getDocuments<T extends ActionIdentity>(
 
   try {
     const response: Response = await fetch(
-      `https://localhost:8080/api/documents/${searchString}`
+      `/api/documents?searchString=${searchString}`
     );
     const result: ApiResponse = await response.json();
 
     if (!response.ok) {
       throw new Error(result.error);
     }
-
+    debugger;
     return {
       type: ActionTypes.receiveDocuments,
       payload: result,
