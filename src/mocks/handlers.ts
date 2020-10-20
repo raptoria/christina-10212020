@@ -38,6 +38,7 @@ export const handlers = [
     if (body) {
       const cleanValue = DOMPurify.sanitize(JSON.stringify(body));
       documents.push(JSON.parse(cleanValue));
+      //perform some kind of virus scan here, if we were really saving image data
       return res(ctx.status(201));
     } else {
       return res(

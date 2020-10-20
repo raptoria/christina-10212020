@@ -9,6 +9,14 @@ const Uploader: React.FC = () => {
 
   const getProps: () => UploadProps = useCallback(
     () => ({
+      customRequest: ({ file }) => {
+        const { name, size, type } = file;
+        actions.uploadDocument({
+          name,
+          size: Math.round(size / 1000),
+          mimeType: type,
+        });
+      },
       showUploadList: false,
       beforeUpload: (file: RcFile) => {
         const validFormat =
@@ -18,16 +26,6 @@ const Uploader: React.FC = () => {
           message.error(`${file.name} must be a png/jpg`);
         }
         return validFormat;
-      },
-      transformFile(file: RcFile) {
-        const { name, size, type } = file;
-        return new Promise(() => {
-          actions.uploadDocument({
-            name,
-            size: Math.round(size / 1000),
-            mimeType: type,
-          });
-        });
       },
     }),
     [actions]
