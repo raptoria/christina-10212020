@@ -7,6 +7,7 @@ import {
 import React, { useCallback, useContext, useEffect } from 'react';
 import { StoreContext } from '../store/store';
 import { useDebouncedCallback } from 'use-debounce';
+import DOMPurify from 'dompurify';
 
 import styles from './document.module.scss';
 
@@ -23,7 +24,8 @@ const DocumentManager: React.FC = () => {
   }, []);
 
   const debounced = useDebouncedCallback((value: string) => {
-    actions.getDocuments({ searchString: value });
+    const cleanValue = DOMPurify.sanitize(value);
+    actions.getDocuments({ searchString: cleanValue });
   }, 500);
 
   const onSearch = useCallback(

@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 import { Document, Documents } from '../store/types';
+import DOMPurify from 'dompurify';
 
 let documents: Document[] = [
   { name: 'Jimmy', size: 100, mimeType: 'image/png' },
@@ -11,12 +12,13 @@ let documents: Document[] = [
 export const handlers = [
   //get documents
   rest.get('/api/documents', (req, res, ctx) => {
-    const searchString = req.url.searchParams.get('searchString');
     let documentList = documents;
-    console.log('getting document list');
+    const searchString = req.url.searchParams.get('searchString');
+
     if (searchString) {
+      const cleanValue = DOMPurify.sanitize(searchString);
       documentList = documentList.filter((d: Document) =>
-        d.name.toLowerCase().includes(searchString)
+        d.name.toLowerCase().includes(cleanValue)
       );
     }
     if (documentList) {
