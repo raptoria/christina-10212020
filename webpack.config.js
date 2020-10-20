@@ -12,6 +12,7 @@ module.exports = {
   devServer: {
     contentBase: false,
     historyApiFallback: true,
+    // https: true,
   },
   module: {
     rules: [

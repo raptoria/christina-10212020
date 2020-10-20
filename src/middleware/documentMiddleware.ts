@@ -36,16 +36,13 @@ export async function uploadDocument<T extends ActionIdentity>(
   action: T
 ): Promise<Action> {
   try {
-    const response: Response = await fetch(
-      'https://localhost:8080/api/documents/',
-      {
-        method: 'POST',
-        body: JSON.stringify(action.payload),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const response: Response = await fetch('/api/documents/', {
+      method: 'POST',
+      body: JSON.stringify(action.payload),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     const result: ApiResponse = await response.json();
 
     if (!response.ok) {

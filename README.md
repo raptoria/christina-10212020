@@ -12,11 +12,12 @@ npm run start
 
 ## Security
 
-// List security concerns:
-// - that have been addressed
-// - that have _not_ been addressed
-
+Things that have been addressed:
 added GPG key for github so each commit is signed & verified
+
+Not been addressed:
+The serviceWorker doesn't work with a self-signed cert used for development.
+If this was a real backend server it would play nicely with SSL so I could get https working.
 
 ## Improvements
 

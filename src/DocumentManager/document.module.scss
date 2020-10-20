@@ -5,7 +5,7 @@
   :global {
     .grid-wrapper {
       display: grid;
-      width: 960px;
+      max-width: 960px;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: max-content max-content 1fr;
       justify-content: center;
@@ -13,6 +13,7 @@
       margin: auto;
 
       .column-span {
+        margin: var(--spacing-md);
         grid-column: span 3;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -25,10 +26,6 @@
 
         :nth-child(2) {
           justify-self: end;
-        }
-
-        .search {
-          width: 70%;
         }
       }
 
@@ -53,14 +50,22 @@
   }
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 768px) {
   .document {
     :global {
       .grid-wrapper {
-        width: 960px;
         grid-template-columns: 1fr;
         grid-template-rows: none;
         grid-auto-rows: max-content;
+
+        .column-span {
+          grid-column: inherit;
+          grid-template-columns: 1fr;
+
+          > * {
+            width: 100%;
+          }
+        }
       }
     }
   }
