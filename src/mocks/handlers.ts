@@ -6,7 +6,7 @@ let documents: Document[] = [
   { name: 'Jimmy', size: 100, mimeType: 'image/png' },
   { name: 'John', size: 120, mimeType: 'image/png' },
   { name: 'Quails', size: 130, mimeType: 'image/png' },
-  { name: 'Ducks', size: 135, mimeType: 'image/png' },
+  { name: 'Ducks', size: 1000, mimeType: 'image/png' },
 ];
 
 export const handlers = [

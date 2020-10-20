@@ -16,6 +16,11 @@ export interface Document {
   mimeType: string;
 }
 
+export enum sizeUnit {
+  kb = 'kb',
+  mb = 'mb',
+}
+
 export interface Documents {
   documentList?: Document[] | null;
   searchString?: String | null;

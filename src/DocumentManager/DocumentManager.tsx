@@ -8,7 +8,7 @@ import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { StoreContext } from '../store/store';
 import { useDebouncedCallback } from 'use-debounce';
 import DOMPurify from 'dompurify';
-import { Document } from '../store/types';
+import { Document, sizeUnit } from '../store/types';
 
 import styles from './document.module.scss';
 
@@ -42,13 +42,21 @@ const DocumentManager: React.FC = () => {
     [actions]
   );
 
-  const memoizedDimensions = useMemo(
-    () => ({
+  const memoizedDimensions = useMemo(() => {
+    const size: number =
+      documentList?.reduce((acc, d: Document) => acc + d.size, 0) || 0;
+    let finalSize = size;
+    let unit = sizeUnit.kb;
+
+    if (size >= 1000) {
+      finalSize = size / 1000;
+      unit = sizeUnit.mb;
+    }
+    return {
       quantity: documentList?.length,
-      size: documentList?.reduce((acc, d: Document) => acc + d.size, 0),
-    }),
-    [documentList]
-  );
+      size: finalSize + unit,
+    };
+  }, [documentList]);
 
   return (
     <div className={styles.document}>
@@ -76,7 +84,7 @@ const DocumentManager: React.FC = () => {
 
         <div className="column-span">
           <h2>{memoizedDimensions.quantity} documents</h2>
-          <h3>Total size: {memoizedDimensions.size}kb</h3>
+          <h3>Total size: {memoizedDimensions.size}</h3>
         </div>
         {loading ? <Spin className="loading-indicator" /> : null}
         {documentList?.map((document) => (
