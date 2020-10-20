@@ -27,3 +27,13 @@
   background: var(--primary-color);
   border: none;
 }
+
+.ant-alert-message,
+.ant-alert-error .ant-alert-icon {
+  color: #ffd7ca;
+}
+
+.ant-alert-error {
+  background-color: #f44336;
+  border: 1px solid #ea3729;
+}

@@ -1,4 +1,4 @@
-import { Button, Card, Form, Input } from 'antd';
+import { Alert, Button, Card, Form, Input, Spin } from 'antd';
 import {
   DeleteOutlined,
   SearchOutlined,
@@ -14,7 +14,7 @@ const DocumentManager: React.FC = () => {
   const {
     actions,
     state: {
-      documents: { documentList },
+      documents: { documentList, error, loading },
     },
   } = useContext(StoreContext);
 
@@ -32,8 +32,18 @@ const DocumentManager: React.FC = () => {
     [actions]
   );
 
+  const onDelete = useCallback(
+    (documentName: string) => {
+      actions.deleteDocument({ documentName });
+    },
+    [actions]
+  );
+
   return (
     <div className={styles.document}>
+      {error ? (
+        <Alert type="error" showIcon={true} message={error} closeText="Ok" />
+      ) : null}
       <div className="grid-wrapper">
         <div className="column-span">
           <Input
@@ -56,12 +66,16 @@ const DocumentManager: React.FC = () => {
           <h2>!!! documents</h2>
           <span>Total size: !!</span>
         </div>
-
+        {loading ? <Spin className="loading-indicator" /> : null}
         {documentList?.map((document) => (
           <Card title={document.name} bordered={false} key={document.name}>
             <div className="card-wrapper">
               <span>{document.size}</span>
-              <Button type="primary" icon={<DeleteOutlined />}>
+              <Button
+                type="primary"
+                onClick={(e) => onDelete(document.name)}
+                icon={<DeleteOutlined />}
+              >
                 Delete
               </Button>
             </div>

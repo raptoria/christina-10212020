@@ -9,8 +9,15 @@
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: max-content max-content 1fr;
       justify-content: center;
-      padding: var(--spacing-lg) 0;
+      padding: var(--spacing-sm) 0;
       margin: auto;
+
+      .loading-indicator {
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        z-index: 1;
+      }
 
       .column-span {
         margin: var(--spacing-md);

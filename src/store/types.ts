@@ -12,14 +12,16 @@ export interface ApiResponse {
 
 export interface Document {
   name: string;
-  size: string;
+  size: number;
   mimeType: string;
 }
 
 export interface Documents {
   documentList?: Document[] | null;
   searchString?: String | null;
+  documentName?: String | null;
   error?: String | null;
+  loading?: Boolean;
 }
 
 export interface State {

@@ -60,7 +60,36 @@ export async function uploadDocument<T extends ActionIdentity>(
   }
 }
 
+export async function deleteDocument<T extends ActionIdentity>(
+  action: T
+): Promise<Action> {
+  try {
+    const response: Response = await fetch('/api/documents/', {
+      method: 'DELETE',
+      body: JSON.stringify(action.payload),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      const result: ApiResponse = await response.json();
+      throw new Error(result.error);
+    }
+
+    return {
+      type: ActionTypes.getDocuments,
+    };
+  } catch (error) {
+    return {
+      type: ActionTypes.receiveError,
+      payload: { error: error.message },
+    };
+  }
+}
+
 export function* documentMiddleware() {
   yield takeEvery(ActionTypes.getDocuments, getDocuments);
   yield takeEvery(ActionTypes.uploadDocument, uploadDocument);
+  yield takeEvery(ActionTypes.deleteDocument, deleteDocument);
 }
