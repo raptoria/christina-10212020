@@ -22,7 +22,7 @@ If this was a real backend server it would play nicely with SSL so I could get h
 ## Improvements
 
 // What could be added to the app / API?
-Since the API is a mock it uses simplistic data structures to lookup and store file data. If this was a real API, I would use a real DB with better storage and search capabilities.
+Since the API is a mock it uses simplistic data structures to lookup and store file data. If this was a real API, I would use a DB with better storage and search capabilities. Moreover, since the API is a mock, it is saving data about the images but not the images themselves. It would be nice to have this fully fleshed out so I could demonstrate security with regards to real APIs (eg. use express validator);
 
 ## Libraries
 
@@ -30,6 +30,7 @@ Since the API is a mock it uses simplistic data structures to lookup and store f
 conditional expression
 antd
 use-debounce
+dom-purify
 
 ## API
 

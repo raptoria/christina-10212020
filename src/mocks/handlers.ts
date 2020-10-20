@@ -34,7 +34,19 @@ export const handlers = [
   }),
   //create document
   rest.post('/api/documents', (req, res, ctx) => {
-    return res(ctx.status(201));
+    const body = req.body as Document;
+    if (body) {
+      const cleanValue = DOMPurify.sanitize(JSON.stringify(body));
+      documents.push(JSON.parse(cleanValue));
+      return res(ctx.status(201));
+    } else {
+      return res(
+        ctx.status(404),
+        ctx.json({
+          error: 'Could not create document',
+        })
+      );
+    }
   }),
   //delete document
   rest.delete('/api/documents', (req, res, ctx) => {

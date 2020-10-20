@@ -1,7 +1,7 @@
-import { ActionTypes, Action, State } from '../store/types';
+import { ActionTypes, Action, State, Document } from '../store/types';
 import { Dispatch } from 'react';
 
-export const uploadDocument = (payload: State['documents']): Action => {
+export const uploadDocument = (payload: Document): Action => {
   return {
     type: ActionTypes.uploadDocument,
     payload,
@@ -38,7 +38,7 @@ export const deleteDocument = (payload: State['documents']): Action => {
 
 //synonymous with bindActionCreators in mapDispatchToProps, 2nd arg of connect
 export const useActions = (dispatch: Dispatch<Action>) => ({
-  uploadDocument: (payload: State['documents']): void =>
+  uploadDocument: (payload: Document): void =>
     dispatch(uploadDocument(payload)),
   getDocuments: (payload?: State['documents']): void =>
     dispatch(getDocuments(payload)),

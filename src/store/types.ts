@@ -44,11 +44,11 @@ export const enum ActionTypes {
 
 export interface ActionIdentity {
   type: string;
-  payload?: Partial<Documents>;
+  payload?: Partial<Documents & Document>;
 }
 
 export type Action =
-  | { type: ActionTypes.uploadDocument; payload: State['documents'] }
+  | { type: ActionTypes.uploadDocument; payload: Document }
   | {
       type: ActionTypes.getDocuments;
       payload?: State['documents'];

@@ -43,9 +43,9 @@ export async function uploadDocument<T extends ActionIdentity>(
         'Content-Type': 'application/json',
       },
     });
-    const result: ApiResponse = await response.json();
 
     if (!response.ok) {
+      const result: ApiResponse = await response.json();
       throw new Error(result.error);
     }
 

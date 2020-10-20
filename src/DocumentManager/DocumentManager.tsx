@@ -1,9 +1,5 @@
 import { Alert, Button, Card, Form, Input, Spin } from 'antd';
-import {
-  DeleteOutlined,
-  SearchOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
+import { DeleteOutlined, SearchOutlined } from '@ant-design/icons';
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { StoreContext } from '../store/store';
 import { useDebouncedCallback } from 'use-debounce';
@@ -11,6 +7,7 @@ import DOMPurify from 'dompurify';
 import { Document, sizeUnit } from '../store/types';
 
 import styles from './document.module.scss';
+import Uploader from '../Uploader/Uploader';
 
 const DocumentManager: React.FC = () => {
   const {
@@ -73,13 +70,7 @@ const DocumentManager: React.FC = () => {
             onChange={onSearch}
             allowClear={true}
           />
-          <Button
-            type="primary"
-            className="upload-button"
-            icon={<UploadOutlined />}
-          >
-            Upload
-          </Button>
+          <Uploader />
         </div>
 
         <div className="column-span">
@@ -87,8 +78,12 @@ const DocumentManager: React.FC = () => {
           <h3>Total size: {memoizedDimensions.size}</h3>
         </div>
         {loading ? <Spin className="loading-indicator" /> : null}
-        {documentList?.map((document) => (
-          <Card title={document.name} bordered={false} key={document.name}>
+        {documentList?.map((document, idx) => (
+          <Card
+            title={document.name}
+            bordered={false}
+            key={document.name + idx}
+          >
             <div className="card-wrapper">
               <span>{document.size} kb</span>
               <Button
