@@ -36,13 +36,13 @@
   },
   "dependencies": {
     "@types/jest": "^26.0.14",
-    "@types/lodash-es": "^4.17.3",
     "antd": "^4.6.3",
     "conditional-expression": "^1.1.2",
     "jest-transform-stub": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.14.0",
-    "sass-loader": "^10.0.2"
+    "sass-loader": "^10.0.2",
+    "use-debounce": "^5.0.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.24.5",

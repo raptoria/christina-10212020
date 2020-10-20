@@ -22,12 +22,14 @@ If this was a real backend server it would play nicely with SSL so I could get h
 ## Improvements
 
 // What could be added to the app / API?
+Since the API is a mock it uses simplistic data structures to lookup and store file data. If this was a real API, I would use a real DB with better storage and search capabilities.
 
 ## Libraries
 
 // What external libraries have you used and why?
 conditional expression
 antd
+use-debounce
 
 ## API
 

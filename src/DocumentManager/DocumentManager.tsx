@@ -5,8 +5,8 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 import React, { useCallback, useContext, useEffect } from 'react';
-
 import { StoreContext } from '../store/store';
+import { useDebouncedCallback } from 'use-debounce';
 
 import styles from './document.module.scss';
 
@@ -17,9 +17,20 @@ const DocumentManager: React.FC = () => {
       documents: { documentList },
     },
   } = useContext(StoreContext);
+
   useEffect(() => {
     actions.getDocuments();
   }, []);
+
+  const debounced = useDebouncedCallback((value: string) => {
+    actions.getDocuments({ searchString: value });
+  }, 500);
+
+  const onSearch = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      debounced.callback(e.target.value),
+    [actions]
+  );
 
   return (
     <div className={styles.document}>
@@ -30,6 +41,7 @@ const DocumentManager: React.FC = () => {
             prefix={<SearchOutlined className="input-icon" />}
             placeholder="Search documents"
             className="search"
+            onChange={onSearch}
           />
           <Button
             type="primary"
