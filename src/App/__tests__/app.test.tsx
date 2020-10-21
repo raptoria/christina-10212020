@@ -1,11 +1,9 @@
 import {
-  getByLabelText,
-  getByText,
-  getByTestId,
-  queryByTestId,
   waitFor,
   fireEvent,
+  waitForElementToBeRemoved,
 } from '@testing-library/dom';
+import user from '@testing-library/user-event';
 
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
@@ -13,11 +11,13 @@ import App from '../App';
 import React from 'react';
 import { StoreProvider } from '../../store/store';
 import { server } from '../setupTests';
-import { act } from 'react-dom/test-utils';
 
 describe('App', () => {
   beforeAll(() => {
     server.listen();
+  });
+
+  beforeEach(() => {
     render(
       <StoreProvider>
         <App />
@@ -32,22 +32,43 @@ describe('App', () => {
   afterAll(() => server.close());
 
   it('App contains the expected components', async () => {
-    let searchInputNode = screen.getByPlaceholderText('Search documents');
+    const searchInputNode = screen.getByPlaceholderText('Search documents');
     expect(searchInputNode).toBeInTheDocument();
+
+    const uploadButtonNode = screen.getByTestId('uploadButton');
+    expect(uploadButtonNode).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText('5 documents')).toBeInTheDocument();
+    });
   });
 
-  /*   it('the login form has validation', async () => {
-    fireEvent.click(screen.getByRole('button'));
-    await waitFor(() => screen.getByRole('alert'));
-    expect(screen.getByRole('alert')).toHaveTextContent(
-      'Please input a valid address'
-    );
+  it('can filter documents', async () => {
+    const searchInputNode = screen.getByPlaceholderText('Search documents');
+    fireEvent.change(searchInputNode, { target: { value: 'Banana' } });
 
-    fireEvent.change(addressInputNode, { target: { value: 'Banana' } });
-    await waitFor(() => screen.getByRole('alert'));
-    expect(addressInputNode.value).toBe('Banana');
+    await waitFor(() => {
+      expect(screen.getByText('Banana.png')).toBeInTheDocument();
+      expect(screen.getByText('banana2.png')).toBeInTheDocument();
+    });
+  });
 
-      fireEvent.click(screen.getByRole('button'));
-    expect(screen.getByText(/Jobcoin History Graph/i)).toBeInTheDocument();
+  it('can delete a document', async () => {
+    await waitFor(() => {
+      expect(screen.getByTestId('deleteButton-Clove.jpg')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByTestId('deleteButton-Clove.jpg'));
+    await waitForElementToBeRemoved(() => screen.getByText('Clove.jpg'));
+  });
+
+  /*   it('uploading a new file', async () => {
+    const file = new File(['hello'], 'hello.png', { type: 'image/png' });
+    const uploadButton = document.querySelector('[type="file"]')!!;
+    user.upload(uploadButton, file);
+
+    await waitFor(() => {
+      expect(screen.getByText('6 documents')).toBeInTheDocument();
+    });
   }); */
 });

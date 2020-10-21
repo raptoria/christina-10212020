@@ -19,7 +19,6 @@ const Uploader: React.FC = () => {
       },
       showUploadList: false,
       beforeUpload: (file: RcFile) => {
-        debugger;
         const sizeInMB = Math.round(file.size / 1000000);
         const validFormat =
           (file.type === 'image/png' || file.type === 'image/jpeg') &&
@@ -39,6 +38,7 @@ const Uploader: React.FC = () => {
       <Button
         type="primary"
         className="upload-button"
+        data-testid="uploadButton"
         icon={<UploadOutlined />}
       >
         Upload

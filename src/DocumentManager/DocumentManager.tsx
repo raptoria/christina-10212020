@@ -88,6 +88,7 @@ const DocumentManager: React.FC = () => {
               <span>{document.size + sizeUnit.kb} </span>
               <Button
                 type="primary"
+                data-testid={`deleteButton-${document.name}`}
                 onClick={(e) => onDelete(document.name)}
                 icon={<DeleteOutlined />}
               >
