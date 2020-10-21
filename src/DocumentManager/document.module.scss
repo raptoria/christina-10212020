@@ -26,18 +26,11 @@
         grid-template-columns: repeat(2, 1fr);
         align-items: center;
 
-        h2 {
+        h2,
+        h3 {
           display: inline-block;
           color: var(--neutral2-color);
-          span {
-            color: var(--primary-color);
-          }
         }
-
-        h3 {
-          color: var(--neutral2-color);
-        }
-
         :nth-child(2) {
           justify-self: end;
         }

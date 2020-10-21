@@ -3,10 +3,11 @@ import { Document, Documents } from '../store/types';
 import DOMPurify from 'dompurify';
 
 let documents: Document[] = [
-  { name: 'Jimmy', size: 100, mimeType: 'image/png' },
-  { name: 'John', size: 120, mimeType: 'image/png' },
-  { name: 'Quails', size: 130, mimeType: 'image/png' },
-  { name: 'Ducks', size: 1000, mimeType: 'image/png' },
+  { name: 'Banana.png', size: 100, mimeType: 'image/png' },
+  { name: 'Clove.jpg', size: 120, mimeType: 'image/png' },
+  { name: 'Quails.png', size: 130, mimeType: 'image/png' },
+  { name: 'banana2.png', size: 130, mimeType: 'image/png' },
+  { name: 'Ducks.png', size: 1000, mimeType: 'image/png' },
 ];
 
 export const handlers = [
@@ -18,7 +19,7 @@ export const handlers = [
     if (searchString) {
       const cleanValue = DOMPurify.sanitize(searchString);
       documentList = documentList.filter((d: Document) =>
-        d.name.toLowerCase().includes(cleanValue)
+        d.name.toLowerCase().includes(cleanValue.toLowerCase())
       );
     }
     if (documentList) {
