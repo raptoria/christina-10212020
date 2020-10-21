@@ -85,7 +85,7 @@ const DocumentManager: React.FC = () => {
             key={document.name + idx}
           >
             <div className="card-wrapper">
-              <span>{document.size} kb</span>
+              <span>{document.size + sizeUnit.kb} </span>
               <Button
                 type="primary"
                 onClick={(e) => onDelete(document.name)}

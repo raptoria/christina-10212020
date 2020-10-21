@@ -19,11 +19,14 @@ const Uploader: React.FC = () => {
       },
       showUploadList: false,
       beforeUpload: (file: RcFile) => {
+        debugger;
+        const sizeInMB = Math.round(file.size / 1000000);
         const validFormat =
-          file.type === 'image/png' || file.type === 'image/jpeg';
+          (file.type === 'image/png' || file.type === 'image/jpeg') &&
+          sizeInMB <= 10;
 
         if (!validFormat) {
-          message.error(`${file.name} must be a png/jpg`);
+          message.error(`${file.name} must be a png/jpg and smaller than 10MB`);
         }
         return validFormat;
       },
