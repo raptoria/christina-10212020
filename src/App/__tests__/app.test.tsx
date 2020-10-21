@@ -40,6 +40,7 @@ describe('App', () => {
 
     await waitFor(() => {
       expect(screen.getByText('5 documents')).toBeInTheDocument();
+      expect(screen.getByText('Total size: 1.48mb')).toBeInTheDocument();
     });
   });
 
@@ -50,6 +51,7 @@ describe('App', () => {
     await waitFor(() => {
       expect(screen.getByText('Banana.png')).toBeInTheDocument();
       expect(screen.getByText('banana2.png')).toBeInTheDocument();
+      expect(screen.getByText('2 documents')).toBeInTheDocument();
     });
   });
 
@@ -63,7 +65,7 @@ describe('App', () => {
   });
 
   /*   it('uploading a new file', async () => {
-    const file = new File(['hello'], 'hello.png', { type: 'image/png' });
+    const file = new File(['hello'], 'hello.png', { type: 'image/png'});
     const uploadButton = document.querySelector('[type="file"]')!!;
     user.upload(uploadButton, file);
 

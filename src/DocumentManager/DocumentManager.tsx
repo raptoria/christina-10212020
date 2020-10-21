@@ -39,19 +39,27 @@ const DocumentManager: React.FC = () => {
     [actions]
   );
 
+  const formatSize = useCallback(
+    (size: number) => {
+      let finalSize = size;
+      let unit = sizeUnit.kb;
+
+      if (size >= 1000) {
+        finalSize = size / 1000;
+        unit = sizeUnit.mb;
+      }
+      return finalSize + unit;
+    },
+    [actions]
+  );
+
   const memoizedDimensions = useMemo(() => {
     const size: number =
       documentList?.reduce((acc, d: Document) => acc + d.size, 0) || 0;
-    let finalSize = size;
-    let unit = sizeUnit.kb;
 
-    if (size >= 1000) {
-      finalSize = size / 1000;
-      unit = sizeUnit.mb;
-    }
     return {
       quantity: documentList?.length,
-      size: finalSize + unit,
+      size: formatSize(size),
     };
   }, [documentList]);
 
@@ -80,12 +88,12 @@ const DocumentManager: React.FC = () => {
         {loading ? <Spin className="loading-indicator" /> : null}
         {documentList?.map((document, idx) => (
           <Card
-            title={document.name}
+            title={<span title={document.name}>{document.name}</span>}
             bordered={false}
             key={document.name + idx}
           >
             <div className="card-wrapper">
-              <span>{document.size + sizeUnit.kb} </span>
+              <span>{formatSize(document.size)} </span>
               <Button
                 type="primary"
                 data-testid={`deleteButton-${document.name}`}

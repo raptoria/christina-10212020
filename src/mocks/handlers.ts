@@ -11,7 +11,16 @@ let documents: Document[] = [
 ];
 
 export const handlers = [
-  //get documents
+  /**
+   * retrieves all documents. If a query param is sent
+   * it will return the list of filtered documents
+   * @api {GET} /api/documents?searchString=str
+   * @apiParam searchString
+   * @param req the request object
+   * @param res the response object
+   * @param ctx the context
+   * @return the response object containing documentList OR an error message
+   */
   rest.get('/api/documents', (req, res, ctx) => {
     let documentList = documents;
     const searchString = req.url.searchParams.get('searchString');
@@ -33,7 +42,14 @@ export const handlers = [
       );
     }
   }),
-  //create document
+  /**
+   * creates a document
+   * @api {POST} /api/documents
+   * @param req the request object
+   * @param res the response object
+   * @param ctx the context
+   * @return responds that a document has successfully been created OR an error message
+   */
   rest.post('/api/documents', (req, res, ctx) => {
     const body = req.body as Document;
     if (body) {
@@ -50,7 +66,14 @@ export const handlers = [
       );
     }
   }),
-  //delete document
+  /**
+   * delete a document
+   * @api {DELETE} /api/documents
+   * @param req the request object
+   * @param res the response object
+   * @param ctx the context
+   * @return responds with a no content success message OR an error message
+   */
   rest.delete('/api/documents', (req, res, ctx) => {
     const body = req.body as Partial<Documents>;
     const documentName = body.documentName;

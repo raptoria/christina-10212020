@@ -40,6 +40,7 @@
         margin: var(--spacing-md);
         background: var(--tertiary-background);
         color: var(--neutral-color);
+        max-width: 16rem;
 
         .ant-card-head {
           border-color: var(--linebreak-color);
@@ -64,6 +65,10 @@
         grid-template-columns: 1fr;
         grid-template-rows: none;
         grid-auto-rows: max-content;
+
+        .ant-card {
+          max-width: 100%;
+        }
 
         .column-span {
           grid-column: inherit;
