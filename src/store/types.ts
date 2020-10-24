@@ -8,6 +8,7 @@ import {
 
 export interface ApiResponse {
   error?: string;
+  message?: string;
 }
 
 export interface Document {
@@ -35,7 +36,7 @@ export interface State {
 }
 
 export const enum ActionTypes {
-  uploadDocument = 'UPLOAD_DOCUMENATA',
+  uploadDocument = 'UPLOAD_DOCUMENTS',
   getDocuments = 'GET_DOCUMENTS',
   receiveDocuments = 'RECEIVE_DOCUMENTS',
   receiveError = 'RECEIVE_ERROR',

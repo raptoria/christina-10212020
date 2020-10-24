@@ -3,6 +3,7 @@ import { Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { RcFile, UploadProps } from 'antd/lib/upload/interface';
 import { StoreContext } from '../store/store';
+import DOMPurify from 'dompurify';
 
 const Uploader: React.FC = () => {
   const { actions } = useContext(StoreContext);
@@ -12,9 +13,9 @@ const Uploader: React.FC = () => {
       customRequest: ({ file }) => {
         const { name, size, type } = file;
         actions.uploadDocument({
-          name,
+          name: encodeURIComponent(DOMPurify.sanitize(name)),
+          mimeType: encodeURIComponent(DOMPurify.sanitize(type)),
           size: Math.round(size / 1000),
-          mimeType: type,
         });
       },
       showUploadList: false,

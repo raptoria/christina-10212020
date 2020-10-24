@@ -24,7 +24,7 @@ Not been addressed:
 
 ## Improvements
 
-Since the API is a mock it uses simplistic data structures to lookup and store file data. If this was a real API, I would use a DB with better storage and search capabilities. Moreover, since the API is a mock, it is saving data about the images but not the images themselves. It would be nice to have this fully fleshed out so I could demonstrate security with regards to real APIs (eg. use express validator for sanitizing/validation on the server);
+Since the API is a mock it uses simplistic data structures to lookup and store file data. If this was a real API, I would use a DB with better storage and search capabilities. Moreover, since the API is a mock, it is saving data about the images but not the images themselves. It would be nice to have this fully fleshed out so I could demonstrate security with regards to real APIs (eg. use express validator for sanitizing/validation/whitelisting on the server and multer/MongoDB for storing the multipart/form data). Mongo-sanitize can be used to prevent mongo XSS attacks.
 
 Given more time, I'd also like to:
 

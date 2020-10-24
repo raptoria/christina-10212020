@@ -66,6 +66,13 @@
         grid-template-rows: none;
         grid-auto-rows: max-content;
 
+        .ant-upload {
+          width: 100%;
+          .upload-button {
+            width: 100%;
+          }
+        }
+
         .ant-card {
           max-width: 100%;
         }

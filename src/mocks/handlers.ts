@@ -26,7 +26,7 @@ export const handlers = [
     const searchString = req.url.searchParams.get('searchString');
 
     if (searchString) {
-      const cleanValue = DOMPurify.sanitize(searchString);
+      const cleanValue = DOMPurify.sanitize(decodeURIComponent(searchString));
       documentList = documentList.filter((d: Document) =>
         d.name.toLowerCase().includes(cleanValue.toLowerCase())
       );
@@ -53,8 +53,18 @@ export const handlers = [
   rest.post('/api/documents', (req, res, ctx) => {
     const body = req.body as Document;
     if (body) {
-      const cleanValue = DOMPurify.sanitize(JSON.stringify(body));
-      documents.push(JSON.parse(cleanValue));
+      const cleanName = DOMPurify.sanitize(decodeURIComponent(body.name));
+      const cleanMimeType = DOMPurify.sanitize(
+        decodeURIComponent(body.mimeType)
+      );
+      const cleanSize = DOMPurify.sanitize(
+        decodeURIComponent(body.size.toString())
+      );
+      documents.push({
+        size: Number(cleanSize),
+        mimeType: cleanMimeType,
+        name: cleanName,
+      });
       //perform some kind of virus scan here, if we were really saving image data
       return res(ctx.status(201));
     } else {

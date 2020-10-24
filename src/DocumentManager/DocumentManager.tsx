@@ -22,7 +22,7 @@ const DocumentManager: React.FC = () => {
   }, []);
 
   const debounced = useDebouncedCallback((value: string) => {
-    const cleanValue = DOMPurify.sanitize(value);
+    const cleanValue = encodeURIComponent(DOMPurify.sanitize(value));
     actions.getDocuments({ searchString: cleanValue });
   }, 500);
 
