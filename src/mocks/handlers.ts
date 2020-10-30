@@ -2,7 +2,7 @@ import { rest } from 'msw';
 import { Document, Documents } from '../store/types';
 import DOMPurify from 'dompurify';
 
-let documents: Document[] = [
+const documents: Document[] = [
   { name: 'Banana.png', size: 100, mimeType: 'image/png' },
   { name: 'Clove.jpg', size: 120, mimeType: 'image/png' },
   { name: 'Quails.png', size: 130, mimeType: 'image/png' },
